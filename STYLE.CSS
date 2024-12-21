@@ -1,0 +1,21 @@
+h1{
+    color: blueviolet;
+    font-size: 60px;
+    font-family: Cambria;
+    
+}
+#p1{
+    color: blue;
+}
+div{
+    border: solid 1px;
+    width: 300px;
+    height: 150x;
+}
+
+#d2{
+    background-color: rgb(168, 170, 170);
+}
+.f{
+    background-color: red;
+}

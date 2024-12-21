@@ -1,0 +1,30 @@
+h1{
+    color: blueviolet;
+    font-size: 60px;
+    font-family: Cambria;
+    
+}
+#p1{
+    color: blue;
+}
+div{
+    border: solid 1px;
+    width: 300px;
+    height: 150x;
+}
+#d1{
+    width: 600px;
+    height: 500x;
+    background-image: url('duha\ \(1\).png');
+    background-color: aliceblue;
+    display: none;
+   
+}
+#d2{
+    background-color: rgb(168, 170, 170);
+    display: none;
+    background-color: aliceblue;
+}
+.f{
+    background-color: red;
+}
