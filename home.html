@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque - Statistiques</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bibliotheque.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('./depositphotos_378168190-stock-photo-library-bookshelves-books-textbooks-learning.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat; 
+            height: 100vh;
+            margin: 0;
+        }
+        .content {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: thistle;
+        }
+    </style>
+    <style>
+        .navbar-custom {
+            background-color: transparent; /* Arrière-plan transparent */
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link,
+        .navbar-custom .dropdown-item {
+            color: black; /* Couleur blanche pour le texte */
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .dropdown-item:hover {
+            color: #ffc107; /* Couleur dorée au survol */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">A-Library</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link fw-bold" href="home.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="document.html">Document</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="relance.html">Relance</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success fw-bold  ms-2" type="submit" style="background-color:rgb(51, 49, 49) ;">Chercher</button>
+                    <button class="btn btn-outline-success fw-bold  ms-4" type="submit" style="background-color: rgb(51, 49, 49) ;">Deconnexion</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center" style="color: black; font-weight: bold;" >Statistiques de la Bibliothèque</h1>
+        <div class="row">
+            <!-- Nombre de documents empruntés -->
+            <div class="col-md-4 mb-4 mt-5">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Documents Empruntés</h5>
+                        <p class="card-text" id="totalDocumentsEmpruntes">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nombre de livres en rayon -->
+            <div class="col-md-4 mb-4 mt-5">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Livres en Rayon</h5>
+                        <p class="card-text" id="livresEnRayon">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nombre d'emprunts en retard -->
+            <div class="col-md-4 mb-4 mt-5">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Emprunts en Retard</h5>
+                        <p class="card-text" id="empruntsRetard">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Nombre d'utilisateurs -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Utilisateurs</h5>
+                        <p class="card-text" id="totalUtilisateurs">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nombre de relances envoyées -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Relances Envoyées</h5>
+                        <p class="card-text" id="totalRelances">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nombre de périodiques disponibles -->
+            <div class="col-md-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Périodiques Disponibles</h5>
+                        <p class="card-text" id="totalPeriodiques">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script>
+        fetch('statistiques.php')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('totalDocumentsEmpruntes').innerText = data.totalDocumentsEmpruntes;
+        document.getElementById('livresEnRayon').innerText = data.livresEnRayon;
+        document.getElementById('empruntsRetard').innerText = data.empruntsRetard;
+        document.getElementById('totalUtilisateurs').innerText = data.totalUtilisateurs;
+        document.getElementById('totalRelances').innerText = data.totalRelances;
+        document.getElementById('totalPeriodiques').innerText = data.totalPeriodiques;
+    })
+    .catch(error => console.error('Erreur:', error));
+
+    </script>
+</body>
+</html>
